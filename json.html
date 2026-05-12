@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoJSON Distance + Elevation Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>GeoJSON Distance + Elevation Analyzer</h1>
+        <p>Upload a GeoJSON file with <code>LineString</code> features. The app computes segment distances, elevation changes, slope percentages, and height-change percentages for every coordinate pair, then generates a new GeoJSON file with the results.</p>
+
+        <section class="card">
+            <label class="file-label" for="geojson-file">Choose GeoJSON file</label>
+            <input id="geojson-file" type="file" accept=".geojson,application/json">
+            <button id="download-button" type="button" disabled>Download Result</button>
+        </section>
+
+        <section class="card">
+            <h2>Processing Status</h2>
+            <div id="status">No file selected.</div>
+        </section>
+
+        <section class="card">
+            <h2>Summary</h2>
+            <pre id="summary">Upload a GeoJSON file to see results.</pre>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
