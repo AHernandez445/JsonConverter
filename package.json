@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "electron .",
-    "package-win": "electron-builder --win --x64"
+    "package-win": "electron-builder --win --x64",
+    "package-portable": "electron-builder --win --x64 portable"
   },
   "devDependencies": {
     "electron": "^26.0.0",
@@ -25,7 +26,7 @@
       "buildResources": "build"
     },
     "win": {
-      "target": ["nsis", "zip"]
+      "target": ["nsis", "zip", "portable"]
     }
   }
 }

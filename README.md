@@ -5,7 +5,9 @@ This project is a simple GeoJSON analyzer that computes segment distances, eleva
 ## Download Standalone App (No Node.js Required)
 
 For end users who don't want to install Node.js, download the pre-built installer from the [GitHub Releases](https://github.com/Ahernandez/JsonConverter/releases) page. The installer is a standalone executable that includes everything needed to run the app.
+### Portable Version for USB Drives
 
+The releases also include a **portable version** (`.exe` file) that can be copied to a USB drive and run directly on any Windows computer without installation. Just download the portable exe from the releases and copy it to your USB drive.
 To create a new release:
 1. Push a git tag (e.g., `git tag v1.0.1 && git push --tags`)
 2. GitHub Actions will automatically build the app and create a release with the installer files.
@@ -42,7 +44,12 @@ After installing dependencies, run:
 npm run package-win
 ```
 
-The packaged app and installer will appear in the `dist/` folder. These can be distributed to users who don't have Node.js installed.
+The packaged app, installer, and portable exe will appear in the `dist/` folder. The portable exe can be copied to a USB drive for use on any Windows computer without installation.
+
+For portable only:
+```bash
+npm run package-portable
+```
 
 ## Notes
 
