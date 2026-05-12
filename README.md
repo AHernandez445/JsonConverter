@@ -2,6 +2,17 @@
 
 This project is a simple GeoJSON analyzer that computes segment distances, elevation changes, slope percentage, and height-change percentage for `LineString` features.
 
+## Install from GitHub
+
+You can install this app directly from the GitHub repository using npm:
+
+```bash
+npm install https://github.com/Ahernandez/JsonConverter.git
+npm start
+```
+
+This will install the dependencies and launch the app in an Electron window.
+
 ## Run locally
 
 1. Install Node.js on Windows.
