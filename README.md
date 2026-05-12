@@ -2,7 +2,15 @@
 
 This project is a simple GeoJSON analyzer that computes segment distances, elevation changes, slope percentage, and height-change percentage for `LineString` features.
 
-## Install from GitHub
+## Download Standalone App (No Node.js Required)
+
+For end users who don't want to install Node.js, download the pre-built installer from the [GitHub Releases](https://github.com/Ahernandez/JsonConverter/releases) page. The installer is a standalone executable that includes everything needed to run the app.
+
+To create a new release:
+1. Push a git tag (e.g., `git tag v1.0.1 && git push --tags`)
+2. GitHub Actions will automatically build the app and create a release with the installer files.
+
+## Install from GitHub (Requires Node.js)
 
 You can install this app directly from the GitHub repository using npm:
 
@@ -13,7 +21,7 @@ npm start
 
 This will install the dependencies and launch the app in an Electron window.
 
-## Run locally
+## Run locally (Requires Node.js)
 
 1. Install Node.js on Windows.
 2. Open a terminal in this project folder.
@@ -26,7 +34,7 @@ npm start
 
 This launches the app in an Electron window.
 
-## Package for Windows
+## Package for Windows (Requires Node.js for building)
 
 After installing dependencies, run:
 
@@ -34,7 +42,7 @@ After installing dependencies, run:
 npm run package-win
 ```
 
-The packaged app and installer will appear in the `dist/` folder.
+The packaged app and installer will appear in the `dist/` folder. These can be distributed to users who don't have Node.js installed.
 
 ## Notes
 

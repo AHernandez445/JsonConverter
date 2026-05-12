@@ -2,6 +2,7 @@
   "name": "geojson-distance-elevation-app",
   "version": "1.0.0",
   "description": "Desktop GeoJSON analyzer for distance and elevation",
+  "license": "MIT",
   "main": "main.js",
   "repository": {
     "type": "git",
