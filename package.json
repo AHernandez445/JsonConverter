@@ -6,7 +6,7 @@
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ahernandez/JsonConverter.git"
+    "url": "https://github.com/AHernandez445/JsonConverter.git"
   },
   "scripts": {
     "start": "electron .",
