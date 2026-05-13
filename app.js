@@ -36,6 +36,8 @@ function processFeature(feature) {
   let totalDist = 0;
   let totalGain = 0;
   let totalLoss = 0;
+  let maxSlope = null;
+  let minSlope = null;
 
   for (let i = 0; i < coords.length - 1; i++) {
     const a = coords[i];
@@ -46,6 +48,11 @@ function processFeature(feature) {
     const dh = z1 === null || z2 === null ? null : z2 - z1;
     const slope = dh === null || dist === 0 ? null : (dh / dist) * 100;
     const heightPercent = dh === null || z1 === null || z1 === 0 ? null : (dh / Math.abs(z1)) * 100;
+
+    if (slope !== null) {
+      if (maxSlope === null || slope > maxSlope) maxSlope = slope;
+      if (minSlope === null || slope < minSlope) minSlope = slope;
+    }
 
     segments.push({
       index: i,
@@ -70,6 +77,8 @@ function processFeature(feature) {
     ? null
     : ((endElevation - startElevation) / Math.abs(startElevation)) * 100;
 
+  const slopePercentDifference = maxSlope === null || minSlope === null ? null : maxSlope - minSlope;
+
   return {
     type: 'Feature',
     geometry: feature.geometry,
@@ -80,7 +89,10 @@ function processFeature(feature) {
       total_elevation_loss_m: Number(totalLoss.toFixed(3)),
       start_elevation_m: startElevation === null ? null : Number(startElevation.toFixed(3)),
       end_elevation_m: endElevation === null ? null : Number(endElevation.toFixed(3)),
-      total_height_change_percent: totalHeightChangePercent === null ? null : Number(totalHeightChangePercent.toFixed(4))
+      total_height_change_percent: totalHeightChangePercent === null ? null : Number(totalHeightChangePercent.toFixed(4)),
+      max_slope_percent: maxSlope === null ? null : Number(maxSlope.toFixed(4)),
+      min_slope_percent: minSlope === null ? null : Number(minSlope.toFixed(4)),
+      slope_percent_difference: slopePercentDifference === null ? null : Number(slopePercentDifference.toFixed(4))
     })
   };
 }
@@ -113,7 +125,13 @@ function formatSummary(result, errors) {
   const percentLines = result.features.map((feature, index) => {
     const title = feature.properties.name || feature.id || `feature ${index + 1}`;
     const percent = feature.properties.total_height_change_percent;
-    return `  - ${title}: ${percent === null ? 'n/a' : `${percent.toFixed(4)}%`}`;
+    const slopeDiff = feature.properties.slope_percent_difference;
+    const maxSlope = feature.properties.max_slope_percent;
+    const minSlope = feature.properties.min_slope_percent;
+    return `  - ${title}: ${percent === null ? 'n/a' : `${percent.toFixed(4)}%`}` +
+           ` | max slope ${maxSlope === null ? 'n/a' : `${maxSlope.toFixed(4)}%`}` +
+           ` | min slope ${minSlope === null ? 'n/a' : `${minSlope.toFixed(4)}%`}` +
+           ` | slope range ${slopeDiff === null ? 'n/a' : `${slopeDiff.toFixed(4)} pp`}`;
   }).join('\n');
 
   return `Processed features: ${featureCount}\n` +
