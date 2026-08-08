@@ -1,3 +1,4 @@
+#important to note that this was vibe codedusing AI
 # GeoJSON Distance & Elevation Desktop App
 
 This project is a simple GeoJSON analyzer that computes segment distances, elevation changes, slope percentage, and height-change percentage for `LineString` features.
